@@ -1,10 +1,12 @@
 package gob.provias.siged.integracion.dao;
 
 import java.text.SimpleDateFormat;
+
 import java.util.Date;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+
 import org.springframework.jdbc.core.JdbcTemplate;
 
 import gob.provias.siged.integracion.request.MPVRequestArchivo;
@@ -26,7 +28,6 @@ public class RecepcionDAOImpl implements RecepcionDAO{
 	
 	private String pattern = "dd/MM/yyyy";
 	private SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
-	
 
 	public void setJdbcTemplate(JdbcTemplate jdbcTemplate) {
 		this.jdbcTemplate = jdbcTemplate;
@@ -35,11 +36,16 @@ public class RecepcionDAOImpl implements RecepcionDAO{
 	public int guardarDocumentoRecepcion(MPVRequestDocumento documento) throws Exception{	
 		log.info("DAO Guardando recepcion:"+INSERT_RECEPCION_MPV);
 		
-	 return jdbcTemplate.update(INSERT_RECEPCION_MPV, documento.getIdRecepcion(), Constantes.ESTADO_CARGO_NO, Constantes.ESTADO_DOCUMENTO_PENDIENTE, 
-				documento.getTipoDocumentoIdenRemitente(), new Date(), "", documento.getObservacion(), 
-				documento.getNroDocumentoIdenRemitente(), documento.getDesUnidadRemitente(), documento.getNomUnidadDestino(), 
-				documento.getCodTipoInstitucion(), documento.getTipoDocumento(), documento.getNroDocumento(), 
-				simpleDateFormat.parse(documento.getFechaDocumento()), documento.getAsunto(), documento.getRazonSocialRemitente());		
+		// Limpieza de datos
+		documento.setDesUnidadRemitente("");
+		documento.setNomUnidadDestino("");
+		documento.setObservacion("");
+				
+		return jdbcTemplate.update(INSERT_RECEPCION_MPV, documento.getIdRecepcion(), Constantes.ESTADO_CARGO_NO, Constantes.ESTADO_DOCUMENTO_PENDIENTE, 
+			documento.getTipoDocumentoIdenRemitente(), new Date(), "", documento.getObservacion(), 
+			documento.getNroDocumentoIdenRemitente(), documento.getDesUnidadRemitente(), documento.getNomUnidadDestino(), 
+			documento.getCodTipoInstitucion(), documento.getTipoDocumento(), documento.getNroDocumento(), 
+			simpleDateFormat.parse(documento.getFechaDocumento()), documento.getAsunto(), documento.getRazonSocialRemitente());		
 	}
 	
 	public int guardarAdjuntoRecepcion(Integer idRecepcion, MPVRequestArchivo adjunto){	
