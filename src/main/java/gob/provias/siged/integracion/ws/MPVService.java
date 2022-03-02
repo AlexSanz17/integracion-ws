@@ -14,8 +14,6 @@ import gob.provias.siged.integracion.request.MPVRequestDocumento;
 import gob.provias.siged.integracion.response.MPVResponse;
 import gob.provias.siged.integracion.service.RecepcionServicio;
 import gob.provias.siged.integracion.util.Constantes;
-
-
  
 @WebService(serviceName="MPVService")
 @SOAPBinding(style = Style.RPC, use = Use.LITERAL)
@@ -56,8 +54,6 @@ public class MPVService {
 			response.setCodigoRespuesta(Constantes.CODIGO_RESPUESTA_ERROR);
 			response.setMensajeRespuesta("Error al recepcionar tramite virtual:"+e.getMessage());
 		}
-		
-
 		
 		log.info("[FIn] recepcionTramiteVirtual(response):"+response.toString());
 		
@@ -158,11 +154,8 @@ public class MPVService {
 				return "El campo ubicacion es obligatorio para el archivo "+index;
 			}
 			
-			
 			index++;
 		}
-		
-		
 		
 		return "";
 	}
