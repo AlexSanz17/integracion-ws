@@ -35,10 +35,6 @@ public class MPVRequestArchivo {
 	@Override
 	public String toString() {
 		return "MPVRequestArchivo [idRegistro=" + idRegistro + ", tipoArchivo=" + tipoArchivo + ", nombreFisico="
-				+ nombreFisico + ", ubicacion=" + ubicacion + "]";
+			+ nombreFisico + ", ubicacion=" + ubicacion + "]";
 	}
-	
-	
-	
-	
 }

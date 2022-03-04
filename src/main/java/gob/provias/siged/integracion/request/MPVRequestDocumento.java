@@ -6,9 +6,11 @@ public class MPVRequestDocumento {
 
 	private Integer idRegistro;
 	private Integer idRecepcion;
-	private Integer codRemitente;
+	// Numero RUC de la empresa de MPV
+	private String codRemitente;
 	private Integer codTipoInstitucion;
 	private Integer tipoDocumentoIdenRemitente;
+	// Numero DNI del usuario de MPV
 	private String nroDocumentoIdenRemitente;
 	private String razonSocialRemitente;
 	private String desRemitente;
@@ -42,11 +44,11 @@ public class MPVRequestDocumento {
 		this.idRecepcion = idRecepcion;
 	}
 
-	public Integer getCodRemitente() {
+	public String getCodRemitente() {
 		return codRemitente;
 	}
 
-	public void setCodRemitente(Integer codRemitente) {
+	public void setCodRemitente(String codRemitente) {
 		this.codRemitente = codRemitente;
 	}
 
@@ -197,17 +199,14 @@ public class MPVRequestDocumento {
 	@Override
 	public String toString() {
 		return "MPVRequestDocumento [idRegistro=" + idRegistro + ", idRecepcion=" + idRecepcion + ", codRemitente="
-				+ codRemitente + ", codTipoInstitucion=" + codTipoInstitucion + ", tipoDocumentoIdenRemitente="
-				+ tipoDocumentoIdenRemitente + ", nroDocumentoIdenRemitente=" + nroDocumentoIdenRemitente
-				+ ", razonSocialRemitente=" + razonSocialRemitente + ", desRemitente=" + desRemitente
-				+ ", desCargoRemitente=" + desCargoRemitente + ", desUnidadRemitente=" + desUnidadRemitente
-				+ ", tipoDocumento=" + tipoDocumento + ", nroDocumento=" + nroDocumento + ", fechaDocumento="
-				+ fechaDocumento + ", asunto=" + asunto + ", observacion=" + observacion + ", recepcionado="
-				+ recepcionado + ", idUnidadDestino=" + idUnidadDestino + ", nomUnidadDestino=" + nomUnidadDestino
-				+ ", idUsuarioDestino=" + idUsuarioDestino + ", nomUsuarioDestino=" + nomUsuarioDestino + ", archivos="
-				+ archivos + "]";
+			+ codRemitente + ", codTipoInstitucion=" + codTipoInstitucion + ", tipoDocumentoIdenRemitente="
+			+ tipoDocumentoIdenRemitente + ", nroDocumentoIdenRemitente=" + nroDocumentoIdenRemitente
+			+ ", razonSocialRemitente=" + razonSocialRemitente + ", desRemitente=" + desRemitente
+			+ ", desCargoRemitente=" + desCargoRemitente + ", desUnidadRemitente=" + desUnidadRemitente
+			+ ", tipoDocumento=" + tipoDocumento + ", nroDocumento=" + nroDocumento + ", fechaDocumento="
+			+ fechaDocumento + ", asunto=" + asunto + ", observacion=" + observacion + ", recepcionado="
+			+ recepcionado + ", idUnidadDestino=" + idUnidadDestino + ", nomUnidadDestino=" + nomUnidadDestino
+			+ ", idUsuarioDestino=" + idUsuarioDestino + ", nomUsuarioDestino=" + nomUsuarioDestino + ", archivos="
+			+ archivos + "]";
 	}
-	
-	
-
 }

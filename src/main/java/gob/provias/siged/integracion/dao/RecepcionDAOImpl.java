@@ -29,7 +29,7 @@ public class RecepcionDAOImpl implements RecepcionDAO{
 	final String INSERT_ADJUNTO_MPV = "insert into IOTDTD_ADJUNTO_MPV (IDRECEPCION, TIPOARCHIVO, NOMBREARCHIVO, RUTAARCHIVO, FECHAREGISTRO) values "
 			+ "(?, ?, ?, ?, ?)";
 	
-	private String pattern = "dd/MM/yyyy";
+	private String pattern = "dd/MM/yyyy hh:mm:ss";
 	private SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
 
 	public void setJdbcTemplate(JdbcTemplate jdbcTemplate) {
@@ -38,7 +38,7 @@ public class RecepcionDAOImpl implements RecepcionDAO{
 
 	public String cleaned(String textForClean) {
 		 StringBuilder ret =  new StringBuilder();
-	    Matcher matches = Pattern.compile("([A-Za-z0-9 \\-\\_\\.]+)").matcher(textForClean);
+	    Matcher matches = Pattern.compile("([A-Za-z0-9 nÑáéíóúÁÉÍÓÚ\\:\\/\\-\\_\\.]+)").matcher(textForClean);
 	    
 	    while (matches.find()) {
 	        ret.append(matches.group());
@@ -49,21 +49,22 @@ public class RecepcionDAOImpl implements RecepcionDAO{
 	
 	public int guardarDocumentoRecepcion(MPVRequestDocumento documento) throws Exception{	
 		log.info("DAO Guardando recepcion:"+INSERT_RECEPCION_MPV);
-		
-		// Limpieza de datos
-		documento.setDesUnidadRemitente("");
-		documento.setNomUnidadDestino("");
-		documento.setObservacion("");
 				
 		// limpiar caracteres
-		documento.setObservacion(cleaned(documento.getObservacion()));
-		documento.setDesUnidadRemitente(cleaned(documento.getDesUnidadRemitente()));
-		documento.setNomUnidadDestino(cleaned(documento.getNomUnidadDestino()));
-		documento.setAsunto(cleaned(documento.getAsunto()));
+		documento.setCodRemitente(cleaned(documento.getCodRemitente()));
+		documento.setNroDocumentoIdenRemitente(cleaned(documento.getNroDocumentoIdenRemitente()));
 		documento.setRazonSocialRemitente(cleaned(documento.getRazonSocialRemitente()));
-		documento.setDesCargoRemitente(cleaned(documento.getDesCargoRemitente()));
 		documento.setDesRemitente(cleaned(documento.getDesRemitente()));
-		
+		documento.setDesCargoRemitente(cleaned(documento.getDesCargoRemitente()));
+		documento.setDesUnidadRemitente(cleaned(documento.getDesUnidadRemitente()));
+		documento.setNroDocumento(cleaned(documento.getNroDocumento()));
+		documento.setFechaDocumento(cleaned(documento.getFechaDocumento()));
+		documento.setAsunto(cleaned(documento.getAsunto()));
+		documento.setObservacion(cleaned(documento.getObservacion()));
+		documento.setRecepcionado(cleaned(documento.getRecepcionado()));
+		documento.setNomUnidadDestino(cleaned(documento.getNomUnidadDestino()));
+		documento.setNomUsuarioDestino(cleaned(documento.getNomUsuarioDestino()));
+
 		log.info("LIMPIEZA DE CAMPOS");
 		log.info(documento);
 		
@@ -96,28 +97,118 @@ public class RecepcionDAOImpl implements RecepcionDAO{
 			documento.setTipoDocumento(17); 
 			break;
 		case 1051:
-			documento.setTipoDocumento(18); 
+			documento.setTipoDocumento(18);
 			break;
 		case 50:
-			documento.setTipoDocumento(28); 
-			break;		
-		default:			
+			documento.setTipoDocumento(28);
 			break;
-		}		
+		case 19:
+			documento.setTipoDocumento(29); 
+			break;
+		case 6:
+			documento.setTipoDocumento(41); 
+			break;
+		case 17:
+			documento.setTipoDocumento(92); 
+			break;
+		case 70:
+			documento.setTipoDocumento(233); 
+			break;
+		case 1052:
+			documento.setTipoDocumento(343); 
+			break;
+		case 66:
+			documento.setTipoDocumento(345); 
+			break;
+		case 69:
+			documento.setTipoDocumento(351); 
+			break;
+		case 1036:
+			documento.setTipoDocumento(357); 
+			break;
+		case 16:
+			documento.setTipoDocumento(409); 
+			break;
+		case 23:
+			documento.setTipoDocumento(438); 
+			break;
+		case 62:
+			documento.setTipoDocumento(458); 
+			break;
+		case 55:
+			documento.setTipoDocumento(470); 
+			break;
+		case 27:
+			documento.setTipoDocumento(490); 
+			break;
+		case 45:
+			documento.setTipoDocumento(513); 
+			break;
+		default:
+			break;
+		}
 		
-		log.info("TIPO DE DOCUMENTO");
-		log.info(documento.getTipoDocumento());
+		switch (documento.getCodTipoInstitucion()) {
+		case 1:
+			documento.setCodTipoInstitucion(3);
+			break;
+		default:
+			break;
+		}
+		
+		switch (documento.getTipoDocumentoIdenRemitente()) {
+		case 1:
+			documento.setTipoDocumentoIdenRemitente(2);
+			break;
+		case 2:
+			documento.setTipoDocumentoIdenRemitente(1);
+			break;
+		default:
+			break;
+		}
 		
 		// Match tipo documento
-		String tipoDoc = "select idtipodocumento from tipodocumento where idtipodocumento_std = " + documento.getTipoDocumento();
-//		jdbcTemplate.execute(tipoDoc);
+		String tipoDocSql = "select idtipodocumento from tipodocumento where idtipodocumento_std = ?";
+		documento.setTipoDocumento(jdbcTemplate.queryForObject(tipoDocSql, new Object[]{documento.getTipoDocumento()}, Integer.class));
 		
-		return jdbcTemplate.update(INSERT_RECEPCION_MPV, documento.getIdRecepcion(), Constantes.ESTADO_CARGO_NO, Constantes.ESTADO_DOCUMENTO_PENDIENTE, 
-			documento.getTipoDocumentoIdenRemitente(), new Date(), documento.getNroDocumentoIdenRemitente(), documento.getObservacion(), 
-			documento.getCodRemitente(), documento.getDesUnidadRemitente(), documento.getNomUnidadDestino(), 
-			documento.getCodTipoInstitucion(), documento.getTipoDocumento(), documento.getNroDocumento(), 
-			simpleDateFormat.parse(documento.getFechaDocumento()), documento.getAsunto(), documento.getRazonSocialRemitente(),
-			documento.getDesCargoRemitente(), documento.getDesRemitente());
+//		SIDRECEXT,
+//		CFLGENVCAR,
+//		CFLGEST,
+//		CTIPDOCIDEREM,
+//		DFECREG,
+//		VNUMDOCIDEREM,
+//		VOBS,
+//		VRUCENTREM,
+//		VUNIORGREM,
+//		VUNIORGSTD,
+//		CODTIPOINSTITUCION,
+//		TIPODOCUMENTO,
+//		NUMERODOCUMENTO,
+//		FECHADOCUMENTO,
+//		ASUNTO,
+//		VNOMENTEMI,
+//		DESCARGOREMITENTE,
+//		DESREMITENTE
+				
+		return jdbcTemplate.update(INSERT_RECEPCION_MPV,
+			documento.getIdRecepcion(),
+			Constantes.ESTADO_CARGO_NO,
+			Constantes.ESTADO_DOCUMENTO_PENDIENTE,
+			documento.getTipoDocumentoIdenRemitente(),
+			new Date(),
+			documento.getNroDocumentoIdenRemitente(),
+			documento.getObservacion(),
+			documento.getCodRemitente(),
+			documento.getDesUnidadRemitente(),
+			documento.getNomUnidadDestino(), 
+			documento.getCodTipoInstitucion(),
+			documento.getTipoDocumento(),
+			documento.getNroDocumento(),
+			simpleDateFormat.parse(documento.getFechaDocumento()),
+			documento.getAsunto(),
+			documento.getRazonSocialRemitente(),
+			documento.getDesCargoRemitente(),
+			documento.getDesRemitente());
 	}
 	
 	public int guardarAdjuntoRecepcion(Integer idRecepcion, MPVRequestArchivo adjunto){	

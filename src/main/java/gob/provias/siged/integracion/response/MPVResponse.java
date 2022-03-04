@@ -17,12 +17,9 @@ public class MPVResponse {
 	public void setMensajeRespuesta(String mensajeRespuesta) {
 		this.mensajeRespuesta = mensajeRespuesta;
 	}
+	
 	@Override
 	public String toString() {
 		return "MPVResponse [codigoRespuesta=" + codigoRespuesta + ", mensajeRespuesta=" + mensajeRespuesta + "]";
 	}
-	
-	
-		
-
 }
