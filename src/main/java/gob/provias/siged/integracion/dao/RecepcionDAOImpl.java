@@ -166,11 +166,7 @@ public class RecepcionDAOImpl implements RecepcionDAO{
 		default:
 			break;
 		}
-		
-		// Match tipo documento
-		String tipoDocSql = "select idtipodocumento from tipodocumento where idtipodocumento_std = ?";
-		documento.setTipoDocumento(jdbcTemplate.queryForObject(tipoDocSql, new Object[]{documento.getTipoDocumento()}, Integer.class));
-		
+
 //		SIDRECEXT,
 //		CFLGENVCAR,
 //		CFLGEST,

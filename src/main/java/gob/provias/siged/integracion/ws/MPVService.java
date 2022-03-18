@@ -134,7 +134,6 @@ public class MPVService {
 			return "Debe agregar al menos un archivo";
 		}
 		
-		
 		int index = 1;
 		for(MPVRequestArchivo archivo:request.getArchivos()){
 			
