@@ -1,11 +1,14 @@
 package gob.provias.siged.integracion.request;
 
 public class MPVRequestArchivo {
-		
 	private Integer idRegistro;
 	private String tipoArchivo;
 	private String nombreFisico;
 	private String ubicacion;
+	private String numeroFolios;
+	
+	public MPVRequestArchivo() {
+	}
 	
 	public Integer getIdRegistro() {
 		return idRegistro;
@@ -32,9 +35,17 @@ public class MPVRequestArchivo {
 		this.ubicacion = ubicacion;
 	}
 	
+	public String getNumeroFolios() {
+		return numeroFolios;
+	}
+	
+	public void setNumeroFolios(String numeroFolios) {
+		this.numeroFolios = numeroFolios;
+	}
+	
 	@Override
 	public String toString() {
 		return "MPVRequestArchivo [idRegistro=" + idRegistro + ", tipoArchivo=" + tipoArchivo + ", nombreFisico="
-			+ nombreFisico + ", ubicacion=" + ubicacion + "]";
+			+ nombreFisico + ", ubicacion=" + ubicacion + ", numeroFolios=" + numeroFolios + "]";
 	}
 }

@@ -3,24 +3,28 @@ package gob.provias.siged.integracion.request;
 import java.util.List;
 
 public class MPVRequestDocumento {
-
-	private Integer idRegistro;
+//	CFLGENVCAR,
+//	CFLGEST,
+//	VUNIORGSTD,
+//	DFECREG,
+	
+	private Integer idRegistro;//	SIDRECEXT,
 	private Integer idRecepcion;
 	// Numero RUC de la empresa de MPV
-	private String codRemitente;
-	private Integer codTipoInstitucion;
-	private Integer tipoDocumentoIdenRemitente;
+	private String codRemitente;//	VRUCENTREM,
+	private Integer codTipoInstitucion;//	CODTIPOINSTITUCION,
+	private Integer tipoDocumentoIdenRemitente;//	CTIPDOCIDEREM,
 	// Numero DNI del usuario de MPV
-	private String nroDocumentoIdenRemitente;
-	private String razonSocialRemitente;
-	private String desRemitente;
-	private String desCargoRemitente;
-	private String desUnidadRemitente;
-	private Integer tipoDocumento;
-	private String nroDocumento;
-	private String fechaDocumento;
-	private String asunto;
-	private String observacion;
+	private String nroDocumentoIdenRemitente;//	VNUMDOCIDEREM,
+	private String razonSocialRemitente;//	VNOMENTEMI,
+	private String desRemitente;//	DESREMITENTE
+	private String desCargoRemitente;//	DESCARGOREMITENTE,
+	private String desUnidadRemitente;//	VUNIORGREM,
+	private Integer tipoDocumento;//	TIPODOCUMENTO,
+	private String nroDocumento;//	NUMERODOCUMENTO,
+	private String fechaDocumento;//	FECHADOCUMENTO,
+	private String asunto;//	ASUNTO,
+	private String observacion;//	VOBS,
 	private String recepcionado;
 	private Integer idUnidadDestino;
 	private String nomUnidadDestino;

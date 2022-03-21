@@ -12,8 +12,7 @@ import gob.provias.siged.integracion.util.Constantes;
 public class RecepcionServicioImpl implements RecepcionServicio{
 	
 	private static Log log = LogFactory.getLog(RecepcionServicioImpl.class);
-	
-	RecepcionDAO recepcionDAO;
+	private RecepcionDAO recepcionDAO;
 	
 	public MPVResponse guardarRecepcionMPV(MPVRequestDocumento documento) throws Exception{
 		MPVResponse response = new MPVResponse();
@@ -29,13 +28,6 @@ public class RecepcionServicioImpl implements RecepcionServicio{
 			
 			log.info("Respuesta guardarAdjuntoRecepcion:"+respuesta);
 		}
-		
-		// TODO insertar en tablas de documentos de SGD
-		//Expediente
-		//expendientederivado
-		//documento
-		//archivos
-		
 		
 		response.setCodigoRespuesta(Constantes.CODIGO_RESPUESTA_OK);
 		response.setMensajeRespuesta("Registro de documento exitoso ");

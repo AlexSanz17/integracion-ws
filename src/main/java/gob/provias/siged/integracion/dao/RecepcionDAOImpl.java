@@ -26,8 +26,8 @@ public class RecepcionDAOImpl implements RecepcionDAO{
 			+ "DESCARGOREMITENTE, DESREMITENTE) values "
 			+ "(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 	
-	final String INSERT_ADJUNTO_MPV = "insert into IOTDTD_ADJUNTO_MPV (IDRECEPCION, TIPOARCHIVO, NOMBREARCHIVO, RUTAARCHIVO, FECHAREGISTRO) values "
-			+ "(?, ?, ?, ?, ?)";
+	final String INSERT_ADJUNTO_MPV = "insert into IOTDTD_ADJUNTO_MPV (IDRECEPCION, TIPOARCHIVO, NOMBREARCHIVO, RUTAARCHIVO, NUMEROFOLIOS, FECHAREGISTRO) values "
+			+ "(?, ?, ?, ?, ?, ?)";
 	
 	private String pattern = "dd/MM/yyyy hh:mm:ss";
 	private SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
@@ -167,6 +167,15 @@ public class RecepcionDAOImpl implements RecepcionDAO{
 			break;
 		}
 
+		// Empresa
+		if (documento.getTipoDocumentoIdenRemitente().equals(1)) {
+			documento.setCodRemitente(documento.getNroDocumentoIdenRemitente());
+			documento.setNroDocumentoIdenRemitente("");
+		}
+		else { // Persona
+			documento.setCodRemitente("");
+		}
+
 //		SIDRECEXT,
 //		CFLGENVCAR,
 //		CFLGEST,
@@ -210,7 +219,7 @@ public class RecepcionDAOImpl implements RecepcionDAO{
 	public int guardarAdjuntoRecepcion(Integer idRecepcion, MPVRequestArchivo adjunto){	
 		log.info("DAO Guardando adjunto:"+INSERT_ADJUNTO_MPV);
 		
-	 return jdbcTemplate.update(INSERT_ADJUNTO_MPV, idRecepcion, adjunto.getTipoArchivo(), adjunto.getNombreFisico(), adjunto.getUbicacion(), new Date());		
+	 return jdbcTemplate.update(INSERT_ADJUNTO_MPV, idRecepcion, adjunto.getTipoArchivo(), adjunto.getNombreFisico(), adjunto.getUbicacion(), adjunto.getNumeroFolios(), new Date());		
 	}
 
 }
