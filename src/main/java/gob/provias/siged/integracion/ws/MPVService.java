@@ -9,8 +9,8 @@ import javax.jws.soap.SOAPBinding.Use;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
-import gob.provias.siged.integracion.request.MPVRequestArchivo;
-import gob.provias.siged.integracion.request.MPVRequestDocumento;
+import gob.provias.siged.integracion.domain.MPVRequestArchivo;
+import gob.provias.siged.integracion.domain.MPVRequestDocumento;
 import gob.provias.siged.integracion.response.MPVResponse;
 import gob.provias.siged.integracion.service.RecepcionServicio;
 import gob.provias.siged.integracion.util.Constantes;

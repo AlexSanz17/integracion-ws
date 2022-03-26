@@ -1,7 +1,7 @@
 package gob.provias.siged.integracion.dao;
 
-import gob.provias.siged.integracion.request.MPVRequestArchivo;
-import gob.provias.siged.integracion.request.MPVRequestDocumento;
+import gob.provias.siged.integracion.domain.MPVRequestArchivo;
+import gob.provias.siged.integracion.domain.MPVRequestDocumento;
 
 public interface RecepcionDAO {
 	

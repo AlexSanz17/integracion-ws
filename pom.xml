@@ -14,7 +14,6 @@
     </properties>
  
     <dependencies>
-	
 		<dependency>
 		    <groupId>org.springframework</groupId>
 		    <artifactId>spring-core</artifactId>
@@ -45,8 +44,6 @@
 		    <version>2.2.3</version>
 		</dependency>
 		
-
-		
 		<dependency>
 		<groupId>org.jvnet.jax-ws-commons.spring</groupId>
 		<artifactId>jaxws-spring</artifactId>
@@ -76,7 +73,6 @@
 		    <artifactId>sqljdbc41</artifactId>
 		    <version>8112.200</version>
 		</dependency>
-		
 	</dependencies>
 	
 	<build>

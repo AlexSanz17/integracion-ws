@@ -11,8 +11,8 @@ import org.apache.commons.logging.LogFactory;
 
 import org.springframework.jdbc.core.JdbcTemplate;
 
-import gob.provias.siged.integracion.request.MPVRequestArchivo;
-import gob.provias.siged.integracion.request.MPVRequestDocumento;
+import gob.provias.siged.integracion.domain.MPVRequestArchivo;
+import gob.provias.siged.integracion.domain.MPVRequestDocumento;
 import gob.provias.siged.integracion.util.Constantes;
 
 public class RecepcionDAOImpl implements RecepcionDAO{

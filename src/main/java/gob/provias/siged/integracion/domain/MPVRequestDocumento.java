@@ -1,4 +1,4 @@
-package gob.provias.siged.integracion.request;
+package gob.provias.siged.integracion.domain;
 
 import java.util.List;
 
