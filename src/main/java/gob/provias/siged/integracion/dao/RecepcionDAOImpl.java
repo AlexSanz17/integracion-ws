@@ -44,7 +44,7 @@ public class RecepcionDAOImpl implements RecepcionDAO{
 	        ret.append(matches.group());
 	    }
 	
-	    return ret.toString();
+	    return ret.toString().trim();
 	}
 	
 	public int guardarDocumentoRecepcion(MPVRequestDocumento documento) throws Exception{	
