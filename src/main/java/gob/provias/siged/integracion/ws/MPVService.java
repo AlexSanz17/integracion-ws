@@ -18,17 +18,14 @@ import gob.provias.siged.integracion.util.Constantes;
 @WebService(serviceName="MPVService")
 @SOAPBinding(style = Style.RPC, use = Use.LITERAL)
 public class MPVService {
- 
 	private static Log log = LogFactory.getLog(MPVService.class);
 	
 	RecepcionServicio recepcionServicio;
-	
 	
 	@WebMethod(exclude=true)
     public void setRecepcionServicio(RecepcionServicio recepcionServicio) {
 		this.recepcionServicio = recepcionServicio;
 	}
-
 
 	@WebMethod
     public MPVResponse recepcionTramiteVirtual(MPVRequestDocumento request){
@@ -59,10 +56,8 @@ public class MPVService {
 		
 		return response;
 	}
- 
 	
 	private String validacionRequest(MPVRequestDocumento request){
-		
 		if(request.getIdRecepcion() == null || request.getIdRecepcion().toString().equals("")){
 			return "El campo idRecepcion es obligatorio";
 		}
@@ -158,6 +153,4 @@ public class MPVService {
 		
 		return "";
 	}
-	
-  
 }

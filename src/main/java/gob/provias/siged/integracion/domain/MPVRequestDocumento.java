@@ -10,11 +10,9 @@ public class MPVRequestDocumento {
 	
 	private Integer idRegistro;//	SIDRECEXT,
 	private Integer idRecepcion;
-	// Numero RUC de la empresa de MPV
 	private String codRemitente;//	VRUCENTREM,
 	private Integer codTipoInstitucion;//	CODTIPOINSTITUCION,
 	private Integer tipoDocumentoIdenRemitente;//	CTIPDOCIDEREM,
-	// Numero DNI del usuario de MPV
 	private String nroDocumentoIdenRemitente;//	VNUMDOCIDEREM,
 	private String razonSocialRemitente;//	VNOMENTEMI,
 	private String desRemitente;//	DESREMITENTE
