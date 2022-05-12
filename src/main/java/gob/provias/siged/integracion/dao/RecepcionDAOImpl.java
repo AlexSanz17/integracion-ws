@@ -64,11 +64,11 @@ public class RecepcionDAOImpl implements RecepcionDAO{
 		documento.setRecepcionado(cleaned(documento.getRecepcionado()));
 		documento.setNomUnidadDestino(cleaned(documento.getNomUnidadDestino()));
 		documento.setNomUsuarioDestino(cleaned(documento.getNomUsuarioDestino()));
-
-		log.info("LIMPIEZA DE CAMPOS");
-		log.info(documento);
 		
 		switch (documento.getTipoDocumento()) {
+		case 0:
+			documento.setTipoDocumento(0); 
+			break;
 		case 5:
 			documento.setTipoDocumento(1); 
 			break;
@@ -108,11 +108,17 @@ public class RecepcionDAOImpl implements RecepcionDAO{
 		case 6:
 			documento.setTipoDocumento(41); 
 			break;
-		case 17:
+		case 13:
 			documento.setTipoDocumento(92); 
+			break;
+		case 65:
+			documento.setTipoDocumento(1); 
 			break;
 		case 70:
 			documento.setTipoDocumento(233); 
+			break;
+		case 15:
+			documento.setTipoDocumento(341); 
 			break;
 		case 1052:
 			documento.setTipoDocumento(343); 

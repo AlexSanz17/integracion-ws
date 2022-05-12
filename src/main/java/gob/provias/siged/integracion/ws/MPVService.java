@@ -45,7 +45,6 @@ public class MPVService {
 			}
 						
 		}catch(Exception e){
-			
 			e.printStackTrace();
 			
 			response.setCodigoRespuesta(Constantes.CODIGO_RESPUESTA_ERROR);
